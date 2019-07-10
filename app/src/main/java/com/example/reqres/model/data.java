@@ -7,7 +7,16 @@ public class data {
 
     @SerializedName("id")
     @Expose
-    int id;
+    Integer id;
+    @SerializedName("name")
+    @Expose
+    String name;
+    @SerializedName("job")
+    @Expose
+    String job;
+    @SerializedName("createdAt")
+    @Expose
+    String createdAt;
     @SerializedName("email")
     @Expose
     String email;
@@ -20,6 +29,39 @@ public class data {
     @SerializedName("avatar")
     @Expose
     String avtar;
+
+    public data(String name, String job) {
+        this.name = name;
+        this.job = job;
+    }
+
+    public data() {
+
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getJob() {
+        return job;
+    }
+
+    public void setJob(String job) {
+        this.job = job;
+    }
+
+    public String getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(String createdAt) {
+        this.createdAt = createdAt;
+    }
 
     public int getId() {
         return id;

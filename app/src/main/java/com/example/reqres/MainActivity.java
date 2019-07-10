@@ -9,6 +9,7 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.reqres.api.UserApi;
 import com.example.reqres.api.UserInterface;
@@ -24,6 +25,7 @@ import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
 
+    private TextView textViewResult;
 
     private static final String TAG = "MainActivity";
 
@@ -45,6 +47,8 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        textViewResult = findViewById(R.id.tvPost);
 
         rv = (RecyclerView) findViewById(R.id.main_recycler);
         progressBar = (ProgressBar) findViewById(R.id.main_progress);
@@ -90,6 +94,8 @@ public class MainActivity extends AppCompatActivity {
         userInterface = UserApi.getClient().create(UserInterface.class);
 
         loadFirstPage();
+
+        createUser();
     }
 
     private void loadFirstPage() {
@@ -122,5 +128,36 @@ public class MainActivity extends AppCompatActivity {
 
     private Call<User> callUsersApi() {
         return userInterface.getUsers(currentPage);
+    }
+
+    private void createUser(){
+        data d = new data("John","software engineer");
+
+        Call<data> call = userInterface.creatUser(d);
+
+        call.enqueue(new Callback<data>() {
+            @Override
+            public void onResponse(Call<data> call, Response<data> response) {
+                if (!response.isSuccessful()) {
+                    textViewResult.setText("Code: " + response.code());
+                    return;
+                }
+
+                data dataResponse = response.body();
+
+                String content = "Post Response:" + "\n";
+                content += "ID: " + dataResponse.getId() + "\n";
+                content += "Name: " + dataResponse.getName() + "\n";
+                content += "Job: " + dataResponse.getJob() + "\n";
+                content += "created at: " + dataResponse.getCreatedAt() + "\n\n";
+
+                textViewResult.setText(content);
+            }
+
+            @Override
+            public void onFailure(Call<data> call, Throwable t) {
+                textViewResult.setText(t.getMessage());
+            }
+        });
     }
 }

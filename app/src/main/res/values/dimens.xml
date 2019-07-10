@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <dimen name="textview_margin">580dp</dimen>
     <dimen name="activity_margin">16dp</dimen>
     <dimen name="paddingItemDecorationDefault">8dp</dimen>
     <dimen name="paddingItemDecorationEdge">24dp</dimen>

@@ -11,8 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:clipToPadding="false"
-        android:paddingBottom="@dimen/activity_margin_content"
-        android:paddingTop="@dimen/activity_margin_content"/>
+        android:paddingTop="@dimen/activity_margin_content"
+        android:paddingBottom="@dimen/activity_margin_content" />
 
     <ProgressBar
         android:id="@+id/main_progress"
@@ -20,18 +20,10 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"/>
 
-   <!-- <LinearLayout
-        android:layout_width = "match_parent"
-        android:layout_height = "match_parent"
-        android:orientation = "vertical">
-        <ListView
-            android:id = "@+id/list"
-            android:layout_width = "wrap_content"
-            android:layout_height = "match_parent"
-            android:divider = "#000"
-            android:dividerHeight = "1dp"
-            android:footerDividersEnabled = "false"
-            android:headerDividersEnabled = "false"/>
-    </LinearLayout>-->
+    <TextView
+        android:id="@+id/tvPost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/textview_margin"/>
 
 </FrameLayout>
